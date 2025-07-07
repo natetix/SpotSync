@@ -1,11 +1,10 @@
-/* Sidebar styles */
 .sidebar-container {
   display: flex;
 }
 
 .sidebar {
   width: 250px;
-  background-color: #1f2937;
+  background-color: #ffffff;
   padding: 1rem;
   height: 100vh;
   position: fixed;
@@ -15,7 +14,7 @@
   font-size: 1.25rem;
   font-weight: bold;
   margin-bottom: 1rem;
-  color: #f3f4f6;
+  color: #111827;
 }
 
 .sidebar ul {
@@ -30,26 +29,25 @@
 .sidebar a {
   display: block;
   padding: 0.5rem 1rem;
-  color: #d1d5db;
+  color: #1f2937;
   text-decoration: none;
   border-radius: 0.25rem;
   transition: background-color 0.2s ease;
 }
 
 .sidebar a:hover {
-  background-color: #374151;
-  color: #ffffff;
+  background-color: #e5e7eb;
+  color: #111827;
 }
 
-/* Card styles */
 .card {
   padding: 1rem;
   border-radius: 0.5rem;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
 .card-pending {
-  background-color: #fef3c7;
+  background-color: #fff9db;
   color: #92400e;
 }
 
@@ -68,14 +66,13 @@
   color: #4338ca;
 }
 
-/* Button styles */
 .btn-filter,
 .btn-export {
   padding: 0.5rem 1rem;
   border-radius: 0.25rem;
   font-weight: 500;
   cursor: pointer;
-  transition: background-color 0.2s ease; /* Added to match sidebar */
+  transition: background-color 0.2s ease;
 }
 
 .btn-filter {
@@ -85,7 +82,7 @@
 }
 
 .btn-filter:hover {
-  background-color: #2563eb; /* Darker blue on hover */
+  background-color: #2563eb;
 }
 
 .btn-export {
@@ -95,21 +92,19 @@
 }
 
 .btn-export:hover {
-  background-color: #059669; /* Darker green on hover */
+  background-color: #059669;
 }
 
-/* Badge styles */
 .badge-pending {
   display: inline-block;
   padding: 0.25rem 0.5rem;
   border-radius: 9999px;
-  background-color: #fef3c7;
+  background-color: #fff9db;
   color: #92400e;
   font-size: 0.75rem;
   font-weight: 500;
 }
 
-/* Table styles */
 table {
   border-collapse: collapse;
 }
@@ -119,11 +114,10 @@ th, td {
 }
 
 tr:nth-child(even) {
-  background-color: #f9fafb;
+  background-color: #f3f4f6;
 }
 
-/* Main content adjustment */
 .p-6 {
-  margin-left: 250px; /* To account for sidebar width */
+  margin-left: 250px;
   width: calc(100% - 250px);
 }

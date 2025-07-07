@@ -28,33 +28,32 @@
           </div>
         </div>
         <div class="actions">
-          <button>Settings</button>
           <button class="export">Export Data</button>
         </div>
       </header>
 
       <section class="stats">
-        <div class="card">Active Sessions <strong>12</strong></div>
-        <div class="card">Pending Requests <strong>8</strong></div>
-        <div class="card">Today's Revenue <strong>$245</strong></div>
-        <div class="card">Total Facilities <strong>15</strong></div>
+        <div class="card" id="active-sessions">Active Sessions <strong>0</strong></div>
+        <div class="card" id="pending-requests">Pending Requests <strong>0</strong></div>
+        <div class="card" id="todays-revenue">Today's Revenue <strong>RM0</strong></div>
+        <div class="card" id="total-facilities">Total Facilities <strong>0</strong></div>
       </section>
 
       <section class="status-card-container">
         <div class="status-card">
-          <h3>Pool Tables Status <a href="#">View All</a></h3>
+          <h3>Pool Tables Status <a href="Facilities_dashboard.html?type=poolTables">View All</a></h3>
           <div class="items" id="pool-tables-status">
             <!-- Dynamic status from Firebase -->
           </div>
         </div>
         <div class="status-card">
-          <h3>Discussion Rooms Status <a href="#">View All</a></h3>
+          <h3>Discussion Rooms Status <a href="Facilities_dashboard.html?type=discussionRooms">View All</a></h3>
           <div class="items" id="discussion-rooms-status">
             <!-- Dynamic status from Firebase -->
           </div>
         </div>
         <div class="status-card">
-          <h3>Cubicles Status <a href="#">View All</a></h3>
+          <h3>Cubicles Status <a href="Facilities_dashboard.html?type=cubicles">View All</a></h3>
           <div class="items" id="cubicles-status">
             <!-- Dynamic status from Firebase -->
           </div>

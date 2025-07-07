@@ -12,7 +12,7 @@ const firebaseConfig = {
   messagingSenderId: "799404749511",
   appId: "1:799404749511:web:6081d8bba11f4dc46744e2",
   measurementId: "G-2N5BBPGSP7",
-  databaseURL: "https://spotsync-90745-default-rtdb.firebaseio.com"
+  databaseURL: "https://spotsync-90745-default-rtdb.asia-southeast1.firebasedatabase.app"
 };
 
 // Initialize Firebase
@@ -39,8 +39,8 @@ document.addEventListener("DOMContentLoaded", () => {
           <td>${b.time}</td>
           <td class="status-${b.status.toLowerCase()}">${b.status}</td>
           <td>
-            <button title="View">👁️</button>
-            ${b.status === "Pending" ? '<button title="Approve">✔️</button><button title="Reject">❌</button>' : ''}
+            <button title="View"></button>
+            ${b.status === "Pending" ? '<button title="Approve">Approve</button><button title="Reject">Reject</button>' : ''}
           </td>
         `;
         tbody.appendChild(tr);
@@ -58,10 +58,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const stats = snapshot.val();
     if (!stats) return;
 
-    statsCards[0].innerHTML = `Active Sessions <strong>${stats.activeSessions}</strong>`;
-    statsCards[1].innerHTML = `Pending Requests <strong>${stats.pendingRequests}</strong>`;
-    statsCards[2].innerHTML = `Today's Revenue <strong>$${stats.todaysRevenue}</strong>`;
-    statsCards[3].innerHTML = `Total Facilities <strong>${stats.totalFacilities}</strong>`;
+    document.getElementById("active-sessions").innerHTML = `Active Sessions <strong>${stats.activeSessions}</strong>`;
+    document.getElementById("pending-requests").innerHTML = `Pending Requests <strong>${stats.pendingRequests}</strong>`;
+    document.getElementById("todays-revenue").innerHTML = `Today's Revenue <strong>RM${stats.todaysRevenue}</strong>`;
+    document.getElementById("total-facilities").innerHTML = `Total Facilities <strong>${stats.totalFacilities}</strong>`;
   });
 
   // ======== FACILITY STATUSES (using IDs instead of index) ========
@@ -74,10 +74,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const renderStatus = (elementId, items) => {
       const container = document.getElementById(elementId);
       container.innerHTML = "";
-      for (const [label, status] of Object.entries(items)) {
+      for (const [label, info] of Object.entries(items)) {
+        const status = info.status || "Unknown";
         const div = document.createElement("div");
         div.className = `item ${status.toLowerCase().replace(/\s+/g, "-")}`;
-        div.innerHTML = `${label}<br><small>${status}</small>`;
+        const labelFormatted = label.replaceAll("_", " ");
+        div.innerHTML = `${labelFormatted}<br><small>${status}</small>`;
         container.appendChild(div);
       }
     };
@@ -85,5 +87,29 @@ document.addEventListener("DOMContentLoaded", () => {
     renderStatus("pool-tables-status", data.poolTables);
     renderStatus("discussion-rooms-status", data.discussionRooms);
     renderStatus("cubicles-status", data.cubicles);
+  });
+
+  // === EXPORT DATA FUNCTIONALITY ===
+  document.querySelector(".export").addEventListener("click", () => {
+    const exportRef = ref(db); // export entire DB
+
+    onValue(exportRef, (snapshot) => {
+      const data = snapshot.val();
+      if (!data) {
+        alert("No data to export.");
+        return;
+      }
+
+      const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "firebase_data_export.json";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }, { onlyOnce: true }); // only read once
   });
 });

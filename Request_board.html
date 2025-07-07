@@ -7,92 +7,92 @@
   <link rel="stylesheet" href="Requests_board.css">
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body class="bg-gray-900 text-gray-100">
+<body class="bg-white text-gray-800">
   <div class="sidebar-container">
     <aside class="sidebar">
       <h3>Navigation</h3>
       <ul>
         <li><a href="admin_dasboard.html">Admin Dashboard</a></li>
         <li><a href="Facilities_dashboard.html">Facilities Dashboard</a></li>
-        <!--<li><a href="#">Analytics Board</a></li>-->
         <li><a href="Request_board.html">Requests Board</a></li>
       </ul>
     </aside>
     
-  <div class="p-6 max-w-6xl mx-auto">
-    <h1 class="text-2xl font-bold mb-6">Booking Approvals</h1>
+    <div class="p-6 max-w-6xl mx-auto">
+      <h1 class="text-2xl font-bold mb-6">Booking Approvals</h1>
 
-    <!-- Summary Cards -->
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-      <div class="card card-pending">
-        <p class="text-sm">Pending Approvals</p>
-        <p class="text-xl font-bold">12</p>
+      <!-- Summary Cards -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+        <div class="card card-pending">
+          <p class="text-sm">Pending Approvals</p>
+          <p class="text-xl font-bold">12</p>
+        </div>
+        <div class="card card-approved">
+          <p class="text-sm">Approved Today</p>
+          <p class="text-xl font-bold">8</p>
+        </div>
+        <div class="card card-rejected">
+          <p class="text-sm">Rejected Today</p>
+          <p class="text-xl font-bold">3</p>
+        </div>
+        <div class="card card-total">
+          <p class="text-sm">Total Requests</p>
+          <p class="text-xl font-bold">23</p>
+        </div>
       </div>
-      <div class="card card-approved">
-        <p class="text-sm">Approved Today</p>
-        <p class="text-xl font-bold">8</p>
-      </div>
-      <div class="card card-rejected">
-        <p class="text-sm">Rejected Today</p>
-        <p class="text-xl font-bold">3</p>
-      </div>
-      <div class="card card-total">
-        <p class="text-sm">Total Requests</p>
-        <p class="text-xl font-bold">23</p>
-      </div>
-    </div>
 
-    <!-- Filters and Export -->
-    <div class="flex justify-end space-x-2 mb-4">
-      <button class="btn-filter">Filter</button>
-      <button class="btn-export">Export</button>
-    </div>
+      <!-- Filters and Export -->
+      <div class="flex justify-end space-x-2 mb-4">
+        <button class="btn-filter">Filter</button>
+        <button class="btn-export">Export</button>
+      </div>
 
-    <!-- Table -->
-    <div class="bg-white text-gray-800 rounded-lg shadow">
-      <table class="w-full text-left">
-        <thead>
-          <tr class="bg-gray-200 text-sm">
-            <th class="p-3">Student</th>
-            <th class="p-3">Facility</th>
-            <th class="p-3">Date & Time</th>
-            <th class="p-3">Duration</th>
-            <th class="p-3">Status</th>
-            <th class="p-3">Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr class="border-t">
-            <td class="p-3 flex items-center space-x-2">
-              <img src="https://i.pravatar.cc/40?img=3" alt="avatar" class="w-8 h-8 rounded-full" />
-              <div>
-                <div>Sarah Wilson</div>
-                <div class="text-sm text-gray-500">SW2345</div>
-              </div>
-            </td>
-            <td class="p-3">Pool Table 2<br><span class="text-sm text-gray-500">4 persons</span></td>
-            <td class="p-3">May 8, 2025<br><span class="text-sm text-gray-500">2:00 PM</span></td>
-            <td class="p-3">1 hour</td>
-            <td class="p-3">
-              <span class="badge-pending">Pending</span>
-            </td>
-            <td class="p-3 space-x-2">
-              <button class="text-green-600">✔</button>
-              <button class="text-blue-600">✎</button>
-              <button class="text-red-600">✖</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <!-- Table -->
+      <div class="bg-white text-gray-800 rounded-lg shadow border border-gray-300">
+        <table class="w-full text-left">
+          <thead>
+            <tr class="bg-gray-100 text-sm">
+              <th class="p-3">Student</th>
+              <th class="p-3">Facility</th>
+              <th class="p-3">Date & Time</th>
+              <th class="p-3">Duration</th>
+              <th class="p-3">Status</th>
+              <th class="p-3">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-t border-gray-300">
+              <td class="p-3 flex items-center space-x-2">
+                <img src="https://i.pravatar.cc/40?img=3" alt="avatar" class="w-8 h-8 rounded-full" />
+                <div>
+                  <div>Sarah Wilson</div>
+                  <div class="text-sm text-gray-600">SW2345</div>
+                </div>
+              </td>
+              <td class="p-3">Pool Table 2<br><span class="text-sm text-gray-600">4 persons</span></td>
+              <td class="p-3">May 8, 2025<br><span class="text-sm text-gray-600">2:00 PM</span></td>
+              <td class="p-3">1 hour</td>
+              <td class="p-3">
+                <span class="badge-pending">Pending</span>
+              </td>
+              <td class="p-3 space-x-2">
+                <button class="text-green-600">✔</button>
+                <button class="text-blue-600">✎</button>
+                <button class="text-red-600">✖</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
 
-      <!-- Pagination -->
-      <div class="p-4 flex justify-between items-center text-sm">
-        <span>Showing 1 to 10 of 12 results</span>
-        <div class="space-x-1">
-          <button class="px-2 py-1 border rounded">Previous</button>
-          <button class="px-2 py-1 border rounded bg-gray-300">1</button>
-          <button class="px-2 py-1 border rounded">2</button>
-          <button class="px-2 py-1 border rounded">Next</button>
+        <!-- Pagination -->
+        <div class="p-4 flex justify-between items-center text-sm">
+          <span>Showing 1 to 10 of 12 results</span>
+          <div class="space-x-1">
+            <button class="px-2 py-1 border border-gray-300 rounded">Previous</button>
+            <button class="px-2 py-1 border border-gray-300 rounded bg-gray-200">1</button>
+            <button class="px-2 py-1 border border-gray-300 rounded">2</button>
+            <button class="px-2 py-1 border border-gray-300 rounded">Next</button>
+          </div>
         </div>
       </div>
     </div>

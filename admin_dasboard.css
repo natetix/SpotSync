@@ -1,7 +1,7 @@
 body {
   font-family: Arial, sans-serif;
-  background-color: #111827; /* Changed */
-  color: #f3f4f6; /* Changed */
+  background-color: #f9fafb;
+  color: #111827;
   margin: 0;
   padding: 0;
   display: flex;
@@ -15,14 +15,14 @@ body {
 
 .sidebar {
   width: 220px;
-  background-color: #1f2937; /* Changed */
+  background-color: #ffffff;
   padding: 20px;
-  border-right: 1px solid #374151; /* Changed */
+  border-right: 1px solid #e5e7eb;
 }
 
 .sidebar h3 {
   margin-top: 0;
-  color: #f9fafb; /* Changed */
+  color: #111827;
 }
 
 .sidebar ul {
@@ -36,7 +36,7 @@ body {
 
 .sidebar ul li a {
   text-decoration: none;
-  color: #d1d5db; /* Changed */
+  color: #1f2937;
   font-weight: bold;
   display: block;
   padding: 8px 12px;
@@ -45,8 +45,8 @@ body {
 }
 
 .sidebar ul li a:hover {
-  background-color: #374151; /* Changed */
-  color: #ffffff;
+  background-color: #e5e7eb;
+  color: #111827;
 }
 
 .dashboard {
@@ -70,7 +70,7 @@ header {
   width: 50px;
   border-radius: 50%;
   margin-right: 10px;
-  border: 2px solid #4b5563; /* Changed */
+  border: 2px solid #cbd5e1;
 }
 
 .actions button {
@@ -81,10 +81,8 @@ header {
   cursor: pointer;
 }
 
-
-
 .export {
-  background-color: #3b82f6; /* Changed */
+  background-color: #3b82f6;
   color: white;
 }
 
@@ -103,7 +101,7 @@ header {
 }
 
 .card {
-  background-color: #1f2937; /* Changed */
+  background-color: #ffffff;
   padding: 15px;
   border-radius: 8px;
   width: calc(25% - 10px);
@@ -112,19 +110,19 @@ header {
 }
 
 .card-pending {
-  border-left: 4px solid #f59e0b; /* Changed */
+  border-left: 4px solid #f59e0b;
 }
 
 .card-approved {
-  border-left: 4px solid #10b981; /* Changed */
+  border-left: 4px solid #10b981;
 }
 
 .card-rejected {
-  border-left: 4px solid #ef4444; /* Changed */
+  border-left: 4px solid #ef4444;
 }
 
 .card-total {
-  border-left: 4px solid #6366f1; /* Changed */
+  border-left: 4px solid #6366f1;
 }
 
 .status-card-container {
@@ -135,7 +133,7 @@ header {
 }
 
 .status-card {
-  background: #1f2937; /* Changed */
+  background: #ffffff;
   padding: 15px;
   border-radius: 10px;
   width: calc(33% - 10px);
@@ -154,21 +152,23 @@ header {
   border-radius: 6px;
   text-align: center;
   font-size: 14px;
+  color: #111827;
+  background-color: #f3f4f6;
 }
 
 .available {
   background-color: #e6ffed;
-  color: #2e7d32;
+  color: #15803d;
 }
 
 .in-use {
   background-color: #ffe6e6;
-  color: #c62828;
+  color: #dc2626;
 }
 
 .reserved {
-  background-color: #fff3cd;
-  color: #856404;
+  background-color: #fffbea;
+  color: #ca8a04;
 }
 
 .bookings {
@@ -178,41 +178,39 @@ header {
 table {
   width: 100%;
   border-collapse: collapse;
-  background-color: #ffffff; /* Changed */
-  color: #111827; /* Changed */
+  background-color: #ffffff;
+  color: #111827;
 }
 
 th, td {
   padding: 10px;
-  border-bottom: 1px solid #e5e7eb; /* Changed */
+  border-bottom: 1px solid #e5e7eb;
   text-align: left;
 }
 
 th {
-  background-color: #e5e7eb; /* Changed */
-  color: #111827; /* Changed */
+  background-color: #e5e7eb;
+  color: #111827;
 }
 
 .status-approved {
-  color: #10b981; /* Changed */
+  color: #10b981;
 }
 
 .status-pending {
-  color: #f59e0b; /* Changed */
+  color: #f59e0b;
 }
 
-/* Added badge styles to match your HTML */
 .badge-pending {
   display: inline-block;
   padding: 4px 8px;
   border-radius: 9999px;
-  background-color: #fef3c7;
+  background-color: #fff9db;
   color: #92400e;
   font-size: 0.75rem;
   font-weight: 500;
 }
 
-/* Added action buttons styles */
 .action-btn {
   background: none;
   border: none;
