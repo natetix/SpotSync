@@ -1,0 +1,227 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #111827; /* Changed */
+  color: #f3f4f6; /* Changed */
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.sidebar-container {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 220px;
+  background-color: #1f2937; /* Changed */
+  padding: 20px;
+  border-right: 1px solid #374151; /* Changed */
+}
+
+.sidebar h3 {
+  margin-top: 0;
+  color: #f9fafb; /* Changed */
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  margin: 15px 0;
+}
+
+.sidebar ul li a {
+  text-decoration: none;
+  color: #d1d5db; /* Changed */
+  font-weight: bold;
+  display: block;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.sidebar ul li a:hover {
+  background-color: #374151; /* Changed */
+  color: #ffffff;
+}
+
+.dashboard {
+  flex: 1;
+  padding: 20px;
+  margin-left: 220px;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+}
+
+.user-info img {
+  width: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+  border: 2px solid #4b5563; /* Changed */
+}
+
+.actions button {
+  margin-left: 10px;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+
+
+.export {
+  background-color: #3b82f6; /* Changed */
+  color: white;
+}
+
+.stats {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
+  flex-wrap: wrap;
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  row-gap: 20px;
+}
+
+.card {
+  background-color: #1f2937; /* Changed */
+  padding: 15px;
+  border-radius: 8px;
+  width: calc(25% - 10px);
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.card-pending {
+  border-left: 4px solid #f59e0b; /* Changed */
+}
+
+.card-approved {
+  border-left: 4px solid #10b981; /* Changed */
+}
+
+.card-rejected {
+  border-left: 4px solid #ef4444; /* Changed */
+}
+
+.card-total {
+  border-left: 4px solid #6366f1; /* Changed */
+}
+
+.status-card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  row-gap: 20px;
+}
+
+.status-card {
+  background: #1f2937; /* Changed */
+  padding: 15px;
+  border-radius: 10px;
+  width: calc(33% - 10px);
+  box-sizing: border-box;
+}
+
+.items {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.item {
+  padding: 10px;
+  border-radius: 6px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.available {
+  background-color: #e6ffed;
+  color: #2e7d32;
+}
+
+.in-use {
+  background-color: #ffe6e6;
+  color: #c62828;
+}
+
+.reserved {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.bookings {
+  margin-top: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #ffffff; /* Changed */
+  color: #111827; /* Changed */
+}
+
+th, td {
+  padding: 10px;
+  border-bottom: 1px solid #e5e7eb; /* Changed */
+  text-align: left;
+}
+
+th {
+  background-color: #e5e7eb; /* Changed */
+  color: #111827; /* Changed */
+}
+
+.status-approved {
+  color: #10b981; /* Changed */
+}
+
+.status-pending {
+  color: #f59e0b; /* Changed */
+}
+
+/* Added badge styles to match your HTML */
+.badge-pending {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 9999px;
+  background-color: #fef3c7;
+  color: #92400e;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+/* Added action buttons styles */
+.action-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+  padding: 4px;
+  border-radius: 4px;
+}
+
+.action-btn:hover {
+  background-color: #e5e7eb;
+}

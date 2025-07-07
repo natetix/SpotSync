@@ -1,0 +1,129 @@
+/* Sidebar styles */
+.sidebar-container {
+  display: flex;
+}
+
+.sidebar {
+  width: 250px;
+  background-color: #1f2937;
+  padding: 1rem;
+  height: 100vh;
+  position: fixed;
+}
+
+.sidebar h3 {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #f3f4f6;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar li {
+  margin-bottom: 0.5rem;
+}
+
+.sidebar a {
+  display: block;
+  padding: 0.5rem 1rem;
+  color: #d1d5db;
+  text-decoration: none;
+  border-radius: 0.25rem;
+  transition: background-color 0.2s ease;
+}
+
+.sidebar a:hover {
+  background-color: #374151;
+  color: #ffffff;
+}
+
+/* Card styles */
+.card {
+  padding: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.card-pending {
+  background-color: #fef3c7;
+  color: #92400e;
+}
+
+.card-approved {
+  background-color: #d1fae5;
+  color: #065f46;
+}
+
+.card-rejected {
+  background-color: #fee2e2;
+  color: #991b1b;
+}
+
+.card-total {
+  background-color: #e0e7ff;
+  color: #4338ca;
+}
+
+/* Button styles */
+.btn-filter,
+.btn-export {
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease; /* Added to match sidebar */
+}
+
+.btn-filter {
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+}
+
+.btn-filter:hover {
+  background-color: #2563eb; /* Darker blue on hover */
+}
+
+.btn-export {
+  background-color: #10b981;
+  color: white;
+  border: none;
+}
+
+.btn-export:hover {
+  background-color: #059669; /* Darker green on hover */
+}
+
+/* Badge styles */
+.badge-pending {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  border-radius: 9999px;
+  background-color: #fef3c7;
+  color: #92400e;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+/* Table styles */
+table {
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 0.75rem;
+}
+
+tr:nth-child(even) {
+  background-color: #f9fafb;
+}
+
+/* Main content adjustment */
+.p-6 {
+  margin-left: 250px; /* To account for sidebar width */
+  width: calc(100% - 250px);
+}

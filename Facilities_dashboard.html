@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Facility Status Dashboard</title>
+  <link rel="stylesheet" href="Facilities_dashboard.css" />
+</head>
+<body>
+  <div class="sidebar-container">
+    <aside class="sidebar">
+      <h3>Navigation</h3>
+      <ul>
+        <li><a href="admin_dasboard.html">Admin Dashboard</a></li>
+        <li><a href="Facilities_dashboard.html">Facilities Dashboard</a></li>
+        <!-- <li><a href="#">Analytics Board</a></li> (Work in progress) -->
+        <li><a href="Request_board.html">Requests Board</a></li>
+      </ul>
+    </aside>
+
+  <div class="dashboard">
+    <header>
+      <h2>Facility Status Dashboard</h2>
+      <p>Real-time monitoring of campus facilities</p>
+    </header>
+
+    <section class="facility-status">
+      <div class="section-header">
+        <h3>Pool Tables Status</h3>
+        <span>Last updated: Just now</span>
+      </div>
+      <div class="facility-cards">
+        <div class="card available">Table 1<br><small>Available</small></div>
+        <div class="card in-use">Table 2<br><small>In Use</small></div>
+      </div>
+
+      <div class="section-header">
+        <h3>Discussion Rooms Status</h3>
+        <span>Last updated: Just now</span>
+      </div>
+      <div class="facility-cards">
+        <div class="card available">Room A<br><small>Available</small></div>
+        <div class="card in-use">Room B<br><small>Occupied (10 minutes remaining)</small></div>
+        <div class="card reserved">Room C<br><small>Reserved (starts in 30min)</small></div>
+        <div class="card available">Room D<br><small>Available</small></div>
+      </div>
+
+      <!-- <div class="section-header">
+        <h3>Cubicles Status</h3>
+        <span>Last updated: Just now</span>
+      </div>
+      <div class="facility-cards">
+        <div class="item in-use">Cubicle #1<br><small>In Use</small></div>
+        <div class="item available">Cubicle #2<br><small>Available</small></div>
+        <div class="item reserved">Cubicle #3<br><small>Reserved</small></div>
+        <div class="item in-use">Cubicle #4<br><small>In Use</small></div>
+        <div class="item reserved">Cubicle #5<br><small>Reserved</small></div>
+        <div class="item reserved">Cubicle #6<br><small>Reserved</small></div>
+      </div> -->
+    </section>
+
+    <section class="legend">
+      <h4>Status</h4>
+      <div class="legend-items">
+        <span class="dot available"></span> Available
+        <span class="dot reserved"></span> Reserved
+        <span class="dot in-use"></span> In Use
+      </div>
+    </section>
+
+    <section class="details">
+      <div class="detail-card">
+        <div class="detail-header">
+          <h4>Pool Tables Details</h4>
+          <!-- <a href="#">View History</a> -->
+        </div>
+        <p><strong>Table 1</strong><br>Last booked: 2 hours ago</p>
+        <p><strong>Table 2</strong><br>Current session: 45 mins</p>
+      </div>
+      <div class="detail-card">
+        <div class="detail-header">
+          <h4>Discussion Rooms Details</h4>
+          <!-- <a href="#">View History</a> -->
+        </div>
+        <p><strong>Room A</strong><br>Capacity: 6 people</p>
+        <p><strong>Room B</strong><br>Occupied by: Group Study (6 people)</p>
+      </div>
+    </section>
+
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
