@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="admin_dasboard.css">
+</head>
+<body>
+  <div class="sidebar-container">
+    <aside class="sidebar">
+      <h3>Navigation</h3>
+      <ul>
+        <li><a href="admin_dasboard.html">Admin Dashboard</a></li>
+        <li><a href="Facilities_dashboard.html">Facilities Dashboard</a></li>
+        <!--<li><a href="#">Analytics Board</a></li> (Work in progress)-->
+        <li><a href="Request_board.html">Request Board</a></li>
+      </ul>
+    </aside>
+
+    <main class="dashboard">
+      <header>
+        <div class="user-info">
+          <img src="photo.png" alt="Admin Photo">
+          <div>
+            <h2>Admin Dashboard</h2>
+            <p>Campus Facilities Management</p>
+          </div>
+        </div>
+        <div class="actions">
+          <button class="export">Export Data</button>
+        </div>
+      </header>
+
+      <section class="stats">
+        <div class="card" id="active-sessions">Active Sessions <strong>0</strong></div>
+        <div class="card" id="pending-requests">Pending Requests <strong>0</strong></div>
+        <div class="card" id="todays-revenue">Today's Revenue <strong>RM0</strong></div>
+        <div class="card" id="total-facilities">Total Facilities <strong>0</strong></div>
+      </section>
+
+      <section class="status-card-container">
+        <div class="status-card">
+          <h3>Pool Tables Status <a href="Facilities_dashboard.html?type=poolTables">View All</a></h3>
+          <div class="items" id="pool-tables-status">
+            <!-- Dynamic status from Firebase -->
+          </div>
+        </div>
+        <div class="status-card">
+          <h3>Discussion Rooms Status <a href="Facilities_dashboard.html?type=discussionRooms">View All</a></h3>
+          <div class="items" id="discussion-rooms-status">
+            <!-- Dynamic status from Firebase -->
+          </div>
+        </div>
+        <div class="status-card">
+          <h3>Cubicles Status <a href="Facilities_dashboard.html?type=cubicles">View All</a></h3>
+          <div class="items" id="cubicles-status">
+            <!-- Dynamic status from Firebase -->
+          </div>
+        </div>
+      </section>
+
+      <section class="bookings">
+        <h3>Recent Bookings</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Student</th>
+              <th>Facility</th>
+              <th>Time Slot</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="bookings-body">
+            <!-- Bookings will be rendered here -->
+          </tbody>
+        </table>
+      </section>
+    </main>
+  </div>
+  <!-- Load Firebase logic -->
+  <script type="module" src="admin_dasboard.js"></script>
+</body>
+</html>

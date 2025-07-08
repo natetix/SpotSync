@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Facility Status Dashboard</title>
+  <link rel="stylesheet" href="Facilities_dashboard.css" />
+</head>
+<body>
+  <div class="sidebar-container">
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <h3>Navigation</h3>
+      <ul>
+        <li><a href="admin_dasboard.html">Admin Dashboard</a></li>
+        <li><a href="Facilities_dashboard.html">Facilities Dashboard</a></li>
+        <li><a href="Request_board.html">Requests Board</a></li>
+      </ul>
+    </aside>
+
+    <!-- Main Dashboard -->
+    <div class="dashboard">
+      <header>
+        <h2>Facility Status Dashboard</h2>
+        <p>Real-time monitoring of campus facilities</p>
+      </header>
+
+      <!-- Facility Status Sections -->
+      <section class="facility-status">
+        <!-- Pool Tables -->
+        <div id="poolTables-section">
+          <div class="section-header">
+            <h3>Pool Tables Status</h3>
+            <span>Last updated: Just now</span>
+          </div>
+          <div class="facility-cards" id="pool-tables-status"></div>
+        </div>
+
+        <!-- Discussion Rooms -->
+        <div id="discussionRooms-section">
+          <div class="section-header">
+            <h3>Discussion Rooms Status</h3>
+            <span>Last updated: Just now</span>
+          </div>
+          <div class="facility-cards" id="discussion-rooms-status"></div>
+        </div>
+
+        <!-- Cubicles -->
+        <div id="cubicles-section">
+          <div class="section-header">
+            <h3>Cubicles Status</h3>
+            <span>Last updated: Just now</span>
+          </div>
+          <div class="facility-cards" id="cubicles-status"></div>
+        </div>
+      </section>
+
+      <!-- Legend Section -->
+      <section class="legend">
+        <h4>Status</h4>
+        <div class="legend-items">
+          <span class="dot available"></span> Available
+          <span class="dot reserved"></span> Reserved
+          <span class="dot in-use"></span> In Use
+        </div>
+      </section>
+
+      <!-- Dynamic Facility Details Section -->
+      <section class="details">
+        <div class="detail-card">
+          <div class="detail-header">
+            <h4 id="details-title">Facility Details</h4>
+          </div>
+          <div id="details-content">
+            <p>Select a facility to see more details.</p>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <!-- Firebase JS logic -->
+  <script type="module" src="facilities_dashboard.js"></script>
+</body>
+</html>

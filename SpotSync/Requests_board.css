@@ -1,0 +1,123 @@
+.sidebar-container {
+  display: flex;
+}
+
+.sidebar {
+  width: 250px;
+  background-color: #ffffff;
+  padding: 1rem;
+  height: 100vh;
+  position: fixed;
+}
+
+.sidebar h3 {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #111827;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar li {
+  margin-bottom: 0.5rem;
+}
+
+.sidebar a {
+  display: block;
+  padding: 0.5rem 1rem;
+  color: #1f2937;
+  text-decoration: none;
+  border-radius: 0.25rem;
+  transition: background-color 0.2s ease;
+}
+
+.sidebar a:hover {
+  background-color: #e5e7eb;
+  color: #111827;
+}
+
+.card {
+  padding: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.card-pending {
+  background-color: #fff9db;
+  color: #92400e;
+}
+
+.card-approved {
+  background-color: #d1fae5;
+  color: #065f46;
+}
+
+.card-rejected {
+  background-color: #fee2e2;
+  color: #991b1b;
+}
+
+.card-total {
+  background-color: #e0e7ff;
+  color: #4338ca;
+}
+
+.btn-filter,
+.btn-export {
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.btn-filter {
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+}
+
+.btn-filter:hover {
+  background-color: #2563eb;
+}
+
+.btn-export {
+  background-color: #10b981;
+  color: white;
+  border: none;
+}
+
+.btn-export:hover {
+  background-color: #059669;
+}
+
+.badge-pending {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  border-radius: 9999px;
+  background-color: #fff9db;
+  color: #92400e;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 0.75rem;
+}
+
+tr:nth-child(even) {
+  background-color: #f3f4f6;
+}
+
+.p-6 {
+  margin-left: 250px;
+  width: calc(100% - 250px);
+}
