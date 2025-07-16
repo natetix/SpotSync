@@ -185,7 +185,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!/(?=.*[a-zA-Z])(?=.*\d)/.test(password)) {
             return {
                 isValid: false,
-                message: "Password must contain at least one letter and one number"
+                message: "Password must contain at least one letter, one number and one special character"
             };
         }
         

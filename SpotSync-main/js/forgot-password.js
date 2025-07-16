@@ -12,19 +12,19 @@ document.addEventListener('DOMContentLoaded', () => {
     // Enhanced Firebase initialization check
     function checkFirebaseConfig() {
         console.log('=== Firebase Configuration Check ===');
-        console.log('Firebase available:', typeof firebase !== 'undefined');
-        console.log('Firebase apps:', firebase.apps.length);
+        console.log('Firebase available:', typeof firebase !== 'undefined');    // Check if Firebase is loaded
+        console.log('Firebase apps:', firebase.apps.length);    // Check if any Firebase apps are initialized
         
-        if (firebase.apps.length > 0) {
-            const app = firebase.apps[0];
-            console.log('Firebase app name:', app.name);
+        if (firebase.apps.length > 0) { // If Firebase is initialized, log app details
+            const app = firebase.apps[0];   // Get the first initialized app
+            console.log('Firebase app name:', app.name);    /
             console.log('Firebase project ID:', app.options.projectId);
             console.log('Firebase auth domain:', app.options.authDomain);
             console.log('Firebase API key exists:', !!app.options.apiKey);
         }
         
-        console.log('Firebase Auth available:', typeof firebase.auth !== 'undefined');
-        console.log('Current domain:', window.location.origin);
+        console.log('Firebase Auth available:', typeof firebase.auth !== 'undefined');  // Check if Firebase Auth is available
+        console.log('Current domain:', window.location.origin); // Log current domain
         console.log('======================================');
         
         return firebase.apps.length > 0;
@@ -59,35 +59,35 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     // Enhanced password reset function with detailed logging
-    async function handlePasswordReset(isResend = false) {
-        const matrixId = document.getElementById('matrixId').value.trim().toUpperCase();
-        console.log('\n=== Password Reset Process Started ===');
-        console.log('Matrix ID input:', matrixId);
-        console.log('Is resend:', isResend);
+    async function handlePasswordReset(isResend = false) {  // Function to handle password reset
+        const matrixId = document.getElementById('matrixId').value.trim().toUpperCase();    // Get the Matrix ID input
+        console.log('\n=== Password Reset Process Started ===');    // Log start of password reset process
+        console.log('Matrix ID input:', matrixId);       // Log the Matrix ID input
+        console.log('Is resend:', isResend);    // Log if this is a resend request
         
         // Validate Matrix ID format
-        const validation = validateAndConvertEmail(matrixId);
-        if (!validation.isValid) {
+        const validation = validateAndConvertEmail(matrixId);   
+        if (!validation.isValid) {  // If validation fails, show error
             showError("Invalid Matrix ID format. Please use format: P12345678");
             return;
         }
         
-        currentEmail = validation.email;
-        console.log('Target email:', currentEmail);
+        currentEmail = validation.email;    // Get the converted email
+        console.log('Target email:', currentEmail);   // Log the target email
         
         try {
             // Show loading state
             const resetBtn = document.querySelector('.login-btn');
-            const originalText = resetBtn.textContent;
-            setLoadingState(resetBtn, true, isResend ? 'Resending...' : 'Sending...');
+            const originalText = resetBtn.textContent;  // Store original button text
+            setLoadingState(resetBtn, true, isResend ? 'Resending...' : 'Sending...');  // Set loading state on button
             
-            console.log('=== Checking User Existence ===');
-            let userExists = false;
+            console.log('=== Checking User Existence ==='); // Log user existence check
+            let userExists = false; // Flag to track if user exists
             
             try {
                 // Check if user exists using fetchSignInMethodsForEmail
                 const signInMethods = await firebase.auth().fetchSignInMethodsForEmail(currentEmail);
-                console.log('Sign-in methods for email:', signInMethods);
+                console.log('Sign-in methods for email:', signInMethods);   // Log sign-in methods for the email
                 userExists = signInMethods.length > 0;
                 console.log('User exists:', userExists);
                 
@@ -103,7 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             console.log('=== Configuring Action Code Settings ===');
             // Enhanced action code settings
-            const actionCodeSettings = {
+            const actionCodeSettings = {    
                 url: `${window.location.origin}/index.html?reset=success`,
                 handleCodeInApp: false,
                 // Add iOS and Android package names if you have mobile apps
@@ -111,7 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // android: { packageName: 'your.package.name', installApp: true, minimumVersion: '12' }
             };
             
-            console.log('Action code settings:', JSON.stringify(actionCodeSettings, null, 2));
+            console.log('Action code settings:', JSON.stringify(actionCodeSettings, null, 2));  // Log action code settings
             console.log('Redirect URL:', actionCodeSettings.url);
             
             console.log('=== Sending Password Reset Email ===');
@@ -143,7 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log('4. Look for sender: noreply@your-project-id.firebaseapp.com');
             console.log('====================');
             
-        } catch (error) {
+        } catch (error) {   // Catch any errors during the password reset process
             console.error('\n❌ Password Reset Error Details:');
             console.error('Error code:', error.code);
             console.error('Error message:', error.message);

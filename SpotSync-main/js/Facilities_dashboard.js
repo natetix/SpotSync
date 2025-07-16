@@ -72,6 +72,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 });
 
+// =======================
+// Set last updated time for each section
+// =======================
 const setLastUpdated = (type) => {
   const now = new Date();
   const formatted = now.toLocaleTimeString("en-MY", { hour: '2-digit', minute: '2-digit', second: '2-digit' });
@@ -85,43 +88,49 @@ const setLastUpdated = (type) => {
   if (el) el.textContent = `Last updated: ${formatted}`;
 };
 
+// =======================
+// Render facility status with details
+// =======================
 const renderStatusWithDetails = (elementId, items) => {
-  const container = document.getElementById(elementId);
-  container.innerHTML = "";
+  const container = document.getElementById(elementId); // Get the container element by ID
+  container.innerHTML = ""; // Clear existing content
 
-  for (const [label, info] of Object.entries(items)) {
+  for (const [label, info] of Object.entries(items)) {  // Iterate through each facility item
     const status = info.status || "Unknown";
-    const div = document.createElement("div");
-    div.className = `item ${statusClass(status)}`;
-    div.innerHTML = `${label}<br><small>${capitalizeWords(status)}</small>`;
+    const div = document.createElement("div");  // Create a new div for each facility
+    div.className = `item ${statusClass(status)}`;  // Set class based on status
+    div.innerHTML = `${label}<br><small>${capitalizeWords(status)}</small>`;  // Set inner HTML with label and status
 
-    div.addEventListener("click", () => {
-      renderFacilityDetails(label, info);
+    div.addEventListener("click", () => { // Add click event to show details
+      renderFacilityDetails(label, info);  // Call function to render facility details in modal
     });
 
-    container.appendChild(div);
+    container.appendChild(div); // Append the new div to the container
   }
 };
 
+// =======================
+// Render facility details in the modal 
+// =======================
 const renderFacilityDetails = async (name, info) => {
-  const content = document.getElementById("details-content");
-  content.innerHTML = `
+  const content = document.getElementById("details-content"); // Get the content area of the modal
+  content.innerHTML = ` 
     <p><strong>Facility:</strong> ${name}</p>
     <p><strong>Floor:</strong> ${info.floor ?? "N/A"}</p>
-    <p><strong>Status:</strong> ${info.status ?? "Unknown"}</p>
+    <p><strong>Status:</strong> ${info.status ?? "Unknown"}</p> 
     <p><strong>Requires Payment:</strong> ${info.requires_payment ? "Yes" : "No"}</p>
   `;
 
-  const availabilityRef = collection(db, "facilities", info.id, "availability");
-  const availabilitySnapshot = await getDocs(availabilityRef);
+  const availabilityRef = collection(db, "facilities", info.id, "availability");  // Get the availability sub-collection for the facility
+  const availabilitySnapshot = await getDocs(availabilityRef);  // Fetch the availability data
 
   const schedule = {};
-  availabilitySnapshot.forEach(doc => {
+  availabilitySnapshot.forEach(doc => { // Iterate through each document in the availability collection
     const date = doc.id;
     const times = doc.data();
     schedule[date] = {};
 
-    Object.entries(times).forEach(([time, status]) => {
+    Object.entries(times).forEach(([time, status]) => { // For each time slot, format the time and store the status
       const formattedTime = new Date(`1970-01-01T${time}`).toLocaleTimeString("en-US", {
         hour: 'numeric',
         minute: '2-digit',
@@ -133,7 +142,7 @@ const renderFacilityDetails = async (name, info) => {
 
   const next7Days = [];
   const now = new Date();
-  for (let i = 0; i < 7; i++) {
+  for (let i = 0; i < 7; i++) { // Generate the next 7 days from today
     const d = new Date(now);
     d.setDate(d.getDate() + i);
     next7Days.push(d.toISOString().split("T")[0]);
@@ -141,17 +150,17 @@ const renderFacilityDetails = async (name, info) => {
 
   const times = ["8:00 AM", "9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "1:00 PM", "2:00 PM", "3:00 PM", "4:00 PM", "5:00 PM", "6:00 PM"];
 
-  const grid = document.getElementById("availability-grid");
+  const grid = document.getElementById("availability-grid");  // Get the grid element to display the schedule
   grid.innerHTML = "";
 
-  const table = document.createElement("table");
+  const table = document.createElement("table");  // Create a table to display the schedule
   table.classList.add("calendar-table");
 
-  const header = document.createElement("tr");
-  header.innerHTML = "<th>Time</th>" + next7Days.map(date => `<th>${date}</th>`).join("");
-  table.appendChild(header);
+  const header = document.createElement("tr");  // Create the header row for the table
+  header.innerHTML = "<th>Time</th>" + next7Days.map(date => `<th>${date}</th>`).join("");  // Add date headers
+  table.appendChild(header);    // Append the header row to the table
 
-  times.forEach(time => {
+  times.forEach(time => { // For each time slot, create a row in the table
     const row = document.createElement("tr");
     row.innerHTML = `<td>${time}</td>` + next7Days.map(date => {
       const status = schedule[date]?.[time] ?? "Available";
@@ -235,14 +244,14 @@ window.exportData = async function () {
   }
 
   const headers = Object.keys(facilities[0]);
-  const rows = facilities.map(fac => headers.map(h => `"${fac[h]}"`).join(","));
-  const csvContent = [headers.join(","), ...rows].join("\n");
+  const rows = facilities.map(fac => headers.map(h => `"${fac[h]}"`).join(","));   // Convert each facility object to a CSV row
+  const csvContent = [headers.join(","), ...rows].join("\n"); // Create CSV content with headers and rows
 
-  const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
+  const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" }); // Create a Blob from the CSV content
+  const url = URL.createObjectURL(blob);  // Create a URL for the Blob
+  const a = document.createElement("a");  // Create an anchor element
   a.href = url;
-  a.download = "Facility_Availability_Export.csv";
+  a.download = "Facility_Availability_Export.csv";  // Set the file name for download
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);

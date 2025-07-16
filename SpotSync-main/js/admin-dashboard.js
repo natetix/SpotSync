@@ -1186,30 +1186,30 @@ async function renderRecentBookings() {
 // ==============================
 let currentEditFacilityId = null;
 
-function openEditPopup(id, name, type, floor) {
+function openEditPopup(id, name, type, floor) { // opens the edit popup for a facility
   currentEditFacilityId = id;
-  document.getElementById("popupTitle").textContent = `Manage ${name}`;
-  document.getElementById("popupInfo").innerHTML = `Type: ${type}<br>Floor: ${floor}`;
-  document.getElementById("editPopup").classList.remove("hidden");
+  document.getElementById("popupTitle").textContent = `Manage ${name}`; // Set popup title
+  document.getElementById("popupInfo").innerHTML = `Type: ${type}<br>Floor: ${floor}`;  // Set facility type and floor info
+  document.getElementById("editPopup").classList.remove("hidden");  // Show the popup
 }
 
-function closeEditPopup() {
-  document.getElementById("editPopup").classList.add("hidden");
-  currentEditFacilityId = null;
+function closeEditPopup() { // closes the edit popup
+  document.getElementById("editPopup").classList.add("hidden"); // Hide the popup
+  currentEditFacilityId = null; // Reset current edit facility ID
 }
 
-function updateFacilityStatus(newStatus) {
-  if (!currentEditFacilityId) return;
+function updateFacilityStatus(newStatus) {  // updates the status of the facility
+  if (!currentEditFacilityId) return; // Ensure we have a facility to edit
 
-  firebase.firestore().collection("facilities").doc(currentEditFacilityId).update({
+  firebase.firestore().collection("facilities").doc(currentEditFacilityId).update({   // updates the status of the facility in Firestore
     status: newStatus
   }).then(() => {
-    showNotification(`Facility marked as ${newStatus}`, "success");
-    closeEditPopup();
+    showNotification(`Facility marked as ${newStatus}`, "success"); // Show success notification
+    closeEditPopup(); // Close the popup
     loadFacilities(); // reload updated facilities
-  }).catch(err => {
+  }).catch(err => { // handle errors
     console.error("Failed to update status:", err);
-    showNotification("Error updating status", "error");
+    showNotification("Error updating status", "error"); 
   });
 }
 

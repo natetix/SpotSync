@@ -29,19 +29,19 @@ document.addEventListener("DOMContentLoaded", () => {
 // =======================
 async function renderRecentBookings() {
   try {
-    const bookingsWrapper = document.querySelector('.booking-scroll-wrapper');
+    const bookingsWrapper = document.querySelector('.booking-scroll-wrapper');  // Select the wrapper for bookings
     if (!bookingsWrapper) return;
 
     bookingsWrapper.innerHTML = ''; // Clear previous bookings
 
-    const snapshot = await getDocs(query(
+    const snapshot = await getDocs(query( // Fetch the most recent 100 bookings from Firestore
       collection(db, "bookings"),
       orderBy("bookingDate", "desc"),
       limit(100)
     ));
 
-    const topBookings = [];
-    const bottomBookings = [];
+    const topBookings = []; // Array to hold pending or processing bookings
+    const bottomBookings = [];    // Array to hold final bookings (approved, rejected, paid)
 
     snapshot.forEach(doc => { // Process each booking document
       const data = doc.data();  // Extract booking data
@@ -49,7 +49,7 @@ async function renderRecentBookings() {
       const isPending = ['pending', 'processing'].includes(status); // Check if the booking is pending or processing
       const isFinal = ['approved', 'rejected', 'paid'].includes(status);  // Check if the booking is final
 
-      const bookingRow = `
+      const bookingRow = `  
         <div class="booking-row" data-doc-id="${doc.id}">
           <div class="student-info">
             <img src="https://via.placeholder.com/100" alt="${data.userEmail}" class="student-avatar">
@@ -74,43 +74,43 @@ async function renderRecentBookings() {
         </div>
       `;
 
-      if (isPending) {
+      if (isPending) {  // check if the booking is pending or processing, add to top bookings
         topBookings.push(bookingRow);
       } else {
         bottomBookings.push(bookingRow);
       }
     });
 
-    [...topBookings, ...bottomBookings].forEach(row => {
-      bookingsWrapper.insertAdjacentHTML('beforeend', row);
+    [...topBookings, ...bottomBookings].forEach(row => {  // Combine top and bottom bookings
+      bookingsWrapper.insertAdjacentHTML('beforeend', row); // Append each booking row to the wrapper
     });
 
   } catch (error) {
-    console.error("❌ Failed to fetch bookings:", error);
-    showNotification("Could not load recent bookings", "error");
+    console.error("❌ Failed to fetch bookings:", error); // Log error if fetching bookings fails
+    showNotification("Could not load recent bookings", "error");  // Show error notification if fetching fails
   }
 }
 
 // =======================
 // Handle booking actions (approve, reject, view)
 // =======================
-function handleBookingActions(e) {
-  if (!e.target.classList.contains('action-btn')) return;
+function handleBookingActions(e) {  // Handle click events on booking action buttons
+  if (!e.target.classList.contains('action-btn')) return; // Only handle clicks on action buttons
 
-  const row = e.target.closest('.booking-row');
-  if (!row) return;
+  const row = e.target.closest('.booking-row'); // Find the closest booking row
+  if (!row) return; // If no row is found, exit
 
-  const bookingData = extractBookingData(row);
+  const bookingData = extractBookingData(row);  // Extract booking data from the row
   if (!bookingData) {
-    showNotification('Unable to process booking data', 'error');
-    return;
+    showNotification('Unable to process booking data', 'error');  // Show error if booking data is not found
+    return; // Exit if booking data is invalid
   }
 
-  if (e.target.classList.contains('approve')) {
+  if (e.target.classList.contains('approve')) { // Handle approve button click
     handleApproveBooking(row, bookingData);
-  } else if (e.target.classList.contains('reject')) {
+  } else if (e.target.classList.contains('reject')) { // Handle reject button click
     handleRejectBooking(row, bookingData);
-  } else if (e.target.classList.contains('view')) {
+  } else if (e.target.classList.contains('view')) { // Handle view button click
     handleViewBooking(bookingData);
   }
 }
@@ -136,27 +136,27 @@ function extractBookingData(row) {
 // =======================
 // Handle booking approval and rejection
 // =======================
-function handleApproveBooking(row, bookingData) {
-  const docId = row.getAttribute("data-doc-id");
+function handleApproveBooking(row, bookingData) { // Handle booking approval
+  const docId = row.getAttribute("data-doc-id");  // Get the document ID from the row
   const { studentName, facility, timeSlot } = bookingData;
 
-  if (confirm(`Approve booking for ${studentName}?\nFacility: ${facility}\nTime: ${timeSlot}`)) {
-    updateDoc(doc(db, "bookings", docId), { status: "paid" }).then(() => {
-      const statusBadge = row.querySelector('.status-badge');
-      if (statusBadge) {
+  if (confirm(`Approve booking for ${studentName}?\nFacility: ${facility}\nTime: ${timeSlot}`)) { // Confirm approval
+    updateDoc(doc(db, "bookings", docId), { status: "paid" }).then(() => {  // Update booking status to paid in Firestore
+      const statusBadge = row.querySelector('.status-badge'); // Find the status badge element in the row
+      if (statusBadge) {  // If the status badge exists, update its text and class
         statusBadge.textContent = 'Paid';
         statusBadge.className = 'status-badge paid';
       }
 
-      const actionButtons = row.querySelector('.action-buttons');
+      const actionButtons = row.querySelector('.action-buttons'); // Find the action buttons container
       if (actionButtons) {
         actionButtons.innerHTML = '<button class="action-btn view" title="View Details">👁</button>';
       }
 
-      showNotification(`Booking marked as paid for ${studentName}`, 'success');
-    }).catch(err => {
+      showNotification(`Booking marked as paid for ${studentName}`, 'success'); // Show success notification
+    }).catch(err => { // Handle any errors during the update
       console.error("Error updating to paid:", err);
-      showNotification("Failed to approve booking", "error");
+      showNotification("Failed to approve booking", "error"); // Show error notification
     });
   }
 }
@@ -203,16 +203,16 @@ function handleViewBooking(bookingData) {
 // Setup CSV export for recent bookings
 // =======================
 function setupCSVExport() {
-  document.getElementById("exportCSV")?.addEventListener("click", async () => {
-    try {
-      const snapshot = await getDocs(query(
+  document.getElementById("exportCSV")?.addEventListener("click", async () => {   // Add click event listener to the export button
+    try { // Fetch the most recent 100 bookings from Firestore
+      const snapshot = await getDocs(query( // Fetch bookings collection
         collection(db, "bookings"),
         orderBy("bookingDate", "desc"),
         limit(100)
       ));
 
-      const rows = [["User Email", "User ID", "Facility Name", "Time Slot", "Status", "Booking Date"]];
-      snapshot.forEach(doc => {
+      const rows = [["User Email", "User ID", "Facility Name", "Time Slot", "Status", "Booking Date"]]; // Initialize CSV rows with headers
+      snapshot.forEach(doc => { // Iterate through each booking document
         const data = doc.data();
         rows.push([
           data.userEmail || '',
@@ -224,11 +224,11 @@ function setupCSVExport() {
         ]);
       });
 
-      const csvContent = rows.map(row => row.join(",")).join("\n");
-      const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
-      const link = document.createElement("a");
-      link.href = URL.createObjectURL(blob);
-      link.download = `recent_bookings_${new Date().toISOString().split("T")[0]}.csv`;
+      const csvContent = rows.map(row => row.join(",")).join("\n"); // Convert rows to CSV format
+      const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" }); // Create a Blob from the CSV content
+      const link = document.createElement("a"); // Create an anchor element for download
+      link.href = URL.createObjectURL(blob);  // Create a URL for the Blob
+      link.download = `recent_bookings_${new Date().toISOString().split("T")[0]}.csv`;    // Set the file name for download
       link.style.display = "none";
       document.body.appendChild(link);
       link.click();
