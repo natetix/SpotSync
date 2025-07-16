@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpotSync Admin Dashboard</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-firestore-compat.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+<body>
+    <div class="dashboard">
+        <!-- Header -->
+        <div class="header">
+            <div class="header-left">
+                <div class="admin-avatar">A</div>
+                <div class="header-info">
+                    <h1>Admin Dashboard</h1>
+                    <p>Campus Facilities Management</p>
+                </div>
+            </div>
+            <div class="header-actions">
+                <button class="btn btn-secondary" onclick="window.location.href='admin-floorplan.html'">
+                    🗺️ Interactive Floorplan
+                </button>
+                <button class="btn btn-secondary" onclick="window.location.href='Facilities_dashboard.html'">
+                    🏷️ Facility Status
+                </button>
+                <button class="btn btn-secondary" onclick="window.location.href='booking.html'">
+                    📈 Bookings
+                </button>
+                <button class="btn btn-secondary">
+                    ⚙️ Settings
+                </button>
+                <button class="btn btn-primary" onclick="exportData()">
+                    📊 Export Data
+                </button>
+            </div>
+        </div>
+
+        <!-- Stats Grid -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-header">
+                <span class="stat-title">Active Sessions</span>
+                <div class="stat-icon users">👥</div>
+                </div>
+                <div class="stat-value" id="activeSessionsValue">--</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-header">
+                <span class="stat-title">Pending Requests</span>
+                <div class="stat-icon clock">⏰</div>
+                </div>
+                <div class="stat-value" id="pendingRequestsValue">--</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-header">
+                <span class="stat-title">Today's Revenue</span>
+                <div class="stat-icon dollar">💰</div>
+                </div>
+                <div class="stat-value" id="todayRevenueValue">--</div>
+            </div>
+            <div class="stat-card" onclick="window.location.href='admin-floorplan.html'" style="cursor: pointer;">
+                <div class="stat-header">
+                <span class="stat-title">Total Facilities</span>
+                <div class="stat-icon building">🏢</div>
+                </div>
+                <div class="stat-value" id="totalFacilitiesCount">--</div>
+            </div>
+        </div>
+
+        
+        <div class="charts-grid">
+            <div class="chart-card">
+                <h3>Revenue (RM) Over Time</h3>
+                <canvas id="revenueChart"></canvas>
+            </div>
+
+            <div class="chart-card">
+                <h3>Payment Summary</h3>
+                <canvas id="paymentChart"></canvas>
+            </div>
+
+            <div class="chart-card">
+                <h3>Bookings by Weekday</h3>
+                <canvas id="weekdayChart"></canvas>
+            </div>
+        </div>
+        
+
+
+        <!-- Facilities List Section -->
+        <div id="facilitiesList" style="margin-top: 2em;"></div>
+
+        <!-- === Facility Edit Popup === -->
+        <div id="editPopup" class="hidden">
+            <div class="popup-content">
+                <h2 id="popupTitle">Manage Facility</h2>
+                <p id="popupInfo"></p>
+                <div class="popup-actions">
+                    <button onclick="updateFacilityStatus('available')">Make Available</button>
+                    <button onclick="updateFacilityStatus('reserved')">Reserved</button>
+                    <button onclick="updateFacilityStatus('in use')">In Use</button>
+                    <button onclick="closeEditPopup()" style="background-color: #f56565; color: white;">✖ Cancel</button>
+                </div>
+            </div>
+        </div>
+    
+    <script src="js/firebase-config.js"></script>
+    <script src="js/admin-dashboard.js"></script>
+    
+</body>
+</html> 

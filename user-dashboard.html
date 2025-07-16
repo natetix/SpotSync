@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpotSync | My Bookings</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-firestore-compat.js"></script>
+</head>
+<body style="background: #f6f8fb;">
+    <div class="user-dashboard-wrapper">
+        <!-- Header -->
+        <div class="user-dashboard-header">
+            <div class="user-header-left">
+                <img id="userAvatar" src="assets/User_Icon.png" alt="User Avatar" class="user-avatar">
+                <div>
+                    <h2 id="userWelcome" class="user-welcome">Welcome back!</h2>
+                    <div id="student-id" class="user-studentid">P23015057</div>
+                </div>
+            </div>
+            <div class="user-header-right">
+                <button class="btn btn-secondary" onclick="window.location.href='user-floorplan.html'">🗺️ Interactive Floorplan</button>
+                <button class="btn btn-secondary" id="notificationsBtn" style="padding: 0 12px; position: relative;">
+                    <img src="assets/bell.png" alt="Notifications" style="height: 22px; width: 22px; vertical-align: middle;" />
+                    <span id="notificationBadge" style="display:none;position:absolute;top:2px;right:2px;background:#e53e3e;color:#fff;border-radius:50%;width:16px;height:16px;font-size:12px;line-height:16px;text-align:center;">0</span>
+                </button>
+                <button class="logout-btn" onclick="logout()">Logout</button>
+            </div>
+        </div>
+        <!-- Stats Cards -->
+        <div class="user-stats-cards">
+            <div class="user-stats-card">
+                <div class="user-stats-icon stats-blue">📅</div>
+                <div class="user-stats-label">Active Bookings</div>
+                <div class="user-stats-value" id="activeBookingsCount">0</div>
+            </div>
+            <div class="user-stats-card">
+                <div class="user-stats-icon stats-yellow">⏳</div>
+                <div class="user-stats-label">Pending Approvals</div>
+                <div class="user-stats-value" id="pendingBookingsCount">0</div>
+            </div>
+            <div class="user-stats-card">
+                <div class="user-stats-icon stats-green">✅</div>
+                <div class="user-stats-label">Past Bookings</div>
+                <div class="user-stats-value" id="pastBookingsCount">0</div>
+            </div>
+            <div class="user-stats-card">
+                <div class="user-stats-icon stats-purple">💳</div>
+                <div class="user-stats-label">Total Spent</div>
+                <div class="user-stats-value" id="totalSpent">RM0</div>
+            </div>
+        </div>
+        <!-- Active Bookings -->
+        <div class="user-section-card">
+            <div class="user-section-title">Active Bookings</div>
+            <div id="activeBookingsList"></div>
+        </div>
+        <!-- Recent Activity -->
+        <div class="user-section-card">
+            <div class="user-section-title">Recent Activity</div>
+            <div id="recentActivityList"></div>
+        </div>
+    </div>
+    <div id="notificationDropdown" style="display:none;position:absolute;top:60px;right:40px;z-index:1000;background:#fff;border-radius:10px;box-shadow:0 4px 24px rgba(0,0,0,0.12);min-width:320px;max-width:90vw;padding:0;overflow:hidden;">
+        <div style="padding:12px 16px;font-weight:600;border-bottom:1px solid #e2e8f0;">Notifications</div>
+        <div id="notificationList" style="max-height:300px;overflow-y:auto;"></div>
+        <div style="padding:8px 16px;text-align:right;border-top:1px solid #e2e8f0;">
+            <button id="clearNotificationsBtn" class="btn btn-secondary" style="font-size:13px;padding:4px 10px;">Clear All</button>
+        </div>
+    </div>
+    <script src="js/firebase-config.js"></script>
+    <script src="js/user-dashboard.js"></script>
+</body>
+</html> 
